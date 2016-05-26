@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'customers/new'
 
-  get 'customers/create'
+  post 'customers/create'
 
   get 'customers/edit'
 
