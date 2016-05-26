@@ -12,7 +12,11 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(params[:customer])
-    @customer.save ? redirect_to @customer : render 'new'
+    if @customer.save 
+      redirect_to @customer
+    else
+      render 'new'
+    end
   end
 
   def edit
