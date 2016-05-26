@@ -24,6 +24,16 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
+  def update
+    permitCustomerParams = params.require(:customer).permit(:name, :email)
+    @customer = Customer.find(params[:id])
+    if @customer.update(permitCustomerParams)
+      redirect_to @customer
+    else
+      render 'new'
+    end
+  end
+
   def 
 
   def destroy
