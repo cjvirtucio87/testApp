@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
+    @customers = Customer.all
   end
 
   def new
@@ -11,7 +11,8 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = Customer.new(params[:customer])
+    permitCustomerParams = params.require(:customer).permit(:name, :email)
+    @customer = Customer.new(permitCustomerParams)
     if @customer.save 
       redirect_to @customer
     else
