@@ -1,0 +1,14 @@
+<h1>Customers#show</h1>
+<table>
+  <tr>
+    <td>Name&nbsp;&nbsp;</td>
+    <td>Email address</td>
+  </tr>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.name %></td>
+      <td><%= customer.email %></td>
+      <td><a href='customers/edit'>edit</a></td>
+    </tr>
+  <% end %>
+</table>

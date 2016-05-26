@@ -21,7 +21,10 @@ class CustomersController < ApplicationController
   end
 
   def edit
+    @customer = @customer.find(params[:id])
   end
+
+  def 
 
   def destroy
   end
