@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
 
-  get 'sessions/create'
+  #Sessions.
+  get 'login' => 'sessions/new'
 
-  get 'sessions/destroy'
+  post 'login' => 'sessions/create'
 
+  delete 'logout' => 'sessions/destroy'
+
+  #Customers.
   root 'customers#index'
-  
+
   get 'customers/show'
 
   get 'customers/new'
@@ -16,6 +19,8 @@ Rails.application.routes.draw do
   get 'customers/edit'
 
   get 'customers/destroy'
+
+  resources :sessions
 
   resources :customers
 
