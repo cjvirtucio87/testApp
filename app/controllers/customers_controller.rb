@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
-  def show
+  def all
     @customers = Customer.all
   end
 
