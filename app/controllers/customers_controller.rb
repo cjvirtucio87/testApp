@@ -6,6 +6,10 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
+  def show
+    @customers = Customer.all
+  end
+
   def new
     @customer = Customer.new
   end
