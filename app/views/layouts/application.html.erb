@@ -10,5 +10,9 @@
 
 <%= yield %>
 
+<% flash.each do |message_type, message| %>
+  <div>ERROR: <%= message %></div>
+<% end %>
+
 </body>
 </html>

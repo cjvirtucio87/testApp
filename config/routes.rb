@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
   #Sessions.
-  get 'login' => 'sessions/new'
+  get 'login' => 'sessions#new'
 
-  post 'login' => 'sessions/create'
+  post 'login' => 'sessions#create'
 
-  delete 'logout' => 'sessions/destroy'
+  delete 'logout' => 'sessions#destroy'
 
   #Customers.
   root 'customers#index'
@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   get 'customers/edit'
 
   get 'customers/destroy'
-
-  resources :sessions
 
   resources :customers
 
