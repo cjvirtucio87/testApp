@@ -2,7 +2,9 @@
 <%= form_for @customer, url: {action: 'create'} do |f| %>
   <%= label_tag 'Name' %>
   <%= f.text_field :name %>
-  <%= label_tag 'Email'%>
+  <%= label_tag 'Email (you will use your email address to login)'%>
   <%= f.email_field :email %>
+  <%= label_tag 'Password' %>
+  <%= f.password_field :password %>
   <%= submit_tag 'Submit' %>
 <% end %>
