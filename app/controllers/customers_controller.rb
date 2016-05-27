@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customers = Customer.all
+    @customer = Customer.find(params[:id])
   end
 
   def new
