@@ -3,6 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
+    customer = Customer.find_by(email: params[:session][:email].downcase)
+    if customer && customer.authenticate
+    else
+      flash[:danger] = 'Invalid email/password combination!'
+      render 'new'
+    end
   end
 
   def destroy
