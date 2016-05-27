@@ -5,7 +5,10 @@ class CustomerTest < ActiveSupport::TestCase
     @customer = Customer.new(name: 'tester', email: 'tester@testmail.com', password: 'foobar', password_confirmation: 'foobar')
   end
 
-  def
+  test 'should validate email address' do
+    @customer.email = 'virtucio.cj@gmail.com'
+    assert @customer.valid?
+  end
 
   test 'should authenticate' do
     @customer.password = 'foobar'
