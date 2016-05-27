@@ -39,4 +39,6 @@ class CustomersController < ApplicationController
     @customer.destroy
     redirect_to customers_path
   end
+
+  has_secure_password
 end
