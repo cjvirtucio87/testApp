@@ -15,6 +15,7 @@ class CustomersController < ApplicationController
   end
 
   def create
+    #Whitelist fields.
     permitCustomerParams = params.require(:customer).permit(:name, :email, :password)
     @customer = Customer.new(permitCustomerParams)
     if @customer.save 
@@ -29,7 +30,7 @@ class CustomersController < ApplicationController
   end
 
   def update
-    permitCustomerParams = params.require(:customer).permit(:name, :email)
+    permitCustomerParams = params.require(:customer).permit(:name, :email, :password)
     @customer = Customer.find(params[:id])
     if @customer.update(permitCustomerParams)
       redirect_to @customer
