@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'customers/show'
 
+  get 'customers/all'
+
   get 'customers/new'
 
   post 'customers/create'
