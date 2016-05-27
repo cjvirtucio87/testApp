@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
   end
 
   def create
-    permitCustomerParams = params.require(:customer).permit(:name, :email)
+    permitCustomerParams = params.require(:customer).permit(:name, :email, :password)
     @customer = Customer.new(permitCustomerParams)
     if @customer.save 
       redirect_to @customer
