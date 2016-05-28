@@ -10,8 +10,8 @@
 
 <%= yield %>
 
-<% flash.each do |message_type, message| %>
-  <div>ERROR: <%= message %></div>
+<% flash.each do |_, message| %>
+  <div><%= message %></div>
 <% end %>
 
 </body>

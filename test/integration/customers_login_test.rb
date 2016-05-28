@@ -6,6 +6,7 @@ class CustomersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
     post login_path, session: { email: 'virtucio.cj@gmail.com', password: 'foobar' }
     assert_template 'sessions/new'
+    assert_not flash.empty?
   end
 
   test "login with an invalid password" do

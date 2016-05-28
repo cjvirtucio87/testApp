@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     customer = Customer.find_by(email: params[:session][:email].downcase)
     if customer && customer.authenticate(params[:session][:password])
       log_in customer
-      redirect_to customer
+      #redirect_to makes a new request, unlike render.
+      redirect_to customer, notice: 'You are now logged in.'
     else
       flash.now[:danger] = 'Invalid email/password combination!'
       render 'new'
@@ -15,6 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to root_url
+    redirect_to root_url, notice: 'You have logged out.'
   end
 end
