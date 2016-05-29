@@ -11,4 +11,15 @@ class Customer < ActiveRecord::Base
   def Customer.new_token
     SecureRandom.urlsafe_base64
   end
+
+  def Customer.digest (string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
+  def remember
+    self.remember_token = Customer.new_token
+    self.update_attributes(:remember_digest, Customer.digest(remember_token))
+  end
 end
