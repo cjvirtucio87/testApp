@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class CustomersLoginTest < ActionDispatch::IntegrationTest
+  def setup
+    @customer = customers(:test_customer)
+  end
+
   test "login successfully" do
     get login_path
     assert_template 'sessions/new'
@@ -23,6 +27,7 @@ class CustomersLoginTest < ActionDispatch::IntegrationTest
     get login_path
     post login_path, session: { email: 'virtucio.cj@gmail.com', password: 'foobar' }
     get root_path
-    assert logged_in?
+    #Assert that an <a> element with a login path does not appear.
+    assert_select "a[href=?]", login_path, count: 0
   end
 end
