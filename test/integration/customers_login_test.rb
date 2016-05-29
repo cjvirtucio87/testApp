@@ -18,4 +18,11 @@ class CustomersLoginTest < ActionDispatch::IntegrationTest
     get root_path
     assert flash.empty?
   end
+
+  test "login, go to the homepage, 'login' should appear as 'logout'" do
+    get login_path
+    post login_path, session: { email: 'virtucio.cj@gmail.com', password: 'foobar' }
+    get root_path
+    assert logged_in?
+  end
 end
