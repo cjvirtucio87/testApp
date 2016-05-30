@@ -24,8 +24,8 @@ class CustomersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login, go to the homepage, 'login' should appear as 'logout'" do
-    get login_path
-    post login_path, session: { email: 'virtucio.cj@gmail.com', password: 'foobar' }
+    get login_path 
+    post login_path, session: { email: @customer.email, password: 'foobar' }
     get root_path
     #Assert that an <a> element with a login path does not appear.
     assert_select "a[href=?]", login_path, count: 0

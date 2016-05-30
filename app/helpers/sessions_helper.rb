@@ -8,11 +8,11 @@ module SessionsHelper
   end
 
   def log_out
-    session.delete(:user_id)
+    session.delete(:customer_id)
     @current_customer = nil
   end
 
   def logged_in?
-    !@current_customer.nil?
+    !session[:customer_id].nil?
   end
 end

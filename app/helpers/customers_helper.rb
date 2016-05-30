@@ -1,11 +1,7 @@
 module CustomersHelper
-  def logged_in_link
+  def logged_in_link(customer)
     loginLink = lambda { link_to 'Log in', login_path }
-    logoutLink = lambda do 
-      link_to 'destroy', customer_path(@customer),
-                        method: :delete, 
-                        data: { confirm: 'Are you sure?' }
-    end
+    profileLink = lambda { link_to 'Profile', profile_path }
     logged_in? ? logoutLink : loginLink
   end
 end
