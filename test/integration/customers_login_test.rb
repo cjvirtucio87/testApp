@@ -23,13 +23,13 @@ class CustomersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  test "login, go to the homepage, 'login' should appear as 'logout'" do
+  test "login, go to the homepage, 'login' should appear as 'profile'" do
     get login_path 
     post login_path, session: { email: @customer.email, password: 'foobar' }
     get root_path
     #Assert that an <a> element with a login path does not appear.
     assert_select "a[href=?]", login_path, count: 0
     #Assert that an <a> element with a customers#show path appears.
-    assert_select "a[href=?]", customers_show_path, count: 1
+    assert_select "a[href=?]", customer_path(@customer), count: 1
   end
 end
