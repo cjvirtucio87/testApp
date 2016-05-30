@@ -2,7 +2,8 @@ require 'test_helper'
 
 class CustomerTest < ActiveSupport::TestCase
   def setup
-    @customer = Customer.new(name: 'tester', email: 'tester@testmail.com', password: 'foobar', password_confirmation: 'foobar')
+    @customer = Customer.new(name: 'tester', email: 'tester@testmail.com', 
+                             password: 'foobar', password_confirmation: 'foobar')
   end
 
   test 'should validate email address' do
@@ -18,5 +19,10 @@ class CustomerTest < ActiveSupport::TestCase
   test 'should not authenticate for wrong password input' do
     @customer.password = 'torrentz'
     assert_not @customer.valid?
+  end
+
+  test 'should remember the customer' do
+    @customer.remember
+    assert_not_nil @customer.remember_digest
   end
 end
