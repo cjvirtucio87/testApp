@@ -4,7 +4,7 @@ module SessionsHelper
   end
 
   def current_customer
-    if customer_id = session[:user_id]
+    if customer_id = session[:customer_id]
       @current_customer ||= Customer.find_by(id: session[:customer_id])
     elsif customer_id = cookies.signed[:customer_id]
       customer = Customer.find_by(id: customer_id)
@@ -25,8 +25,8 @@ module SessionsHelper
   end
 
   def make_cookies(customer)
-    customer.enter_remember_digest
-    cookies.permanent.signed[:user_id] = customer.id
+    customer.remember
+    cookies.permanent.signed[:customer_id] = customer.id
     cookies.permanent[:remember_token] = customer.remember_token
   end
 end

@@ -20,12 +20,16 @@ class Customer < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
 
-  def enter_remember_digest
+  def remember
     self.remember_token = Customer.new_token
     update_attributes(remember_digest: Customer.digest(remember_token))
   end
 
   def authenticated?(remember_token)
-    BCrypt::Password.new(self.remember_digest).password?(remember_token)
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
+  def forget
+    update_attributes(remember_digest: nil)
   end
 end
