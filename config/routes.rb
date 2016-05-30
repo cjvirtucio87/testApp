@@ -8,17 +8,17 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   #Customers.
-  root 'home' => 'customers#index'
+  root 'customers#index'
 
-  get 'profile' => 'customers/show'
+  get 'customers/show'
 
-  get 'all' => 'customers/all'
+  get 'customers/all'
 
-  get 'new' => 'customers/new'
+  get 'customers/new'
 
   post 'customers/create'
 
-  get 'edit' => 'customers/edit'
+  get 'customers/edit'
 
   get 'customers/destroy'
 

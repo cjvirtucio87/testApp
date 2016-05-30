@@ -29,5 +29,7 @@ class CustomersLoginTest < ActionDispatch::IntegrationTest
     get root_path
     #Assert that an <a> element with a login path does not appear.
     assert_select "a[href=?]", login_path, count: 0
+    #Assert that an <a> element with a customers#show path appears.
+    assert_select "a[href=?]", customers_show_path, count: 1
   end
 end
