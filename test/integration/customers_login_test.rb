@@ -32,4 +32,5 @@ class CustomersLoginTest < ActionDispatch::IntegrationTest
     #Assert that an <a> element with a customers#show path appears.
     assert_select "a[href=?]", customer_path(@customer), count: 1
   end
+  
 end
