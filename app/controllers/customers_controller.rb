@@ -35,7 +35,7 @@ class CustomersController < ApplicationController
     if @customer.update(permitCustomerParams)
       redirect_to @customer
     else
-      render 'new'
+      render 'edit'
     end
   end
 
