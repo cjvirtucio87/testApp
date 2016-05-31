@@ -3,13 +3,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    customer = Customer.find_by(email: params[:session][:email].downcase)
-    if customer && customer.authenticate(params[:session][:password])
-      log_in customer
+    @customer = Customer.find_by(email: params[:session][:email].downcase)
+    if @customer && @customer.authenticate(params[:session][:password])
+      log_in @customer
       remember_me = params[:session][:remember_me]
-      remember_me == '1' ? make_cookies(customer) : forget(customer)
+      remember_me == '1' ? make_cookies(@customer) : forget(@customer)
       #redirect_to makes a new request, unlike render.
-      redirect_to customer, notice: 'You are now logged in.'
+      redirect_to @customer, notice: 'You are now logged in.'
     else
       flash.now[:danger] = 'Invalid email/password combination!'
       render 'new'
