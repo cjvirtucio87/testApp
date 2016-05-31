@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     customer = Customer.find_by(email: params[:session][:email].downcase)
     if customer && customer.authenticate(params[:session][:password])
       log_in customer
-      make_cookies customer
+      remember_me = params[:session][:remember_me]
+      remember_me == '1' ? make_cookies(customer) : forget(customer)
       #redirect_to makes a new request, unlike render.
       redirect_to customer, notice: 'You are now logged in.'
     else
