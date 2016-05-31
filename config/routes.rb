@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get 'customers/edit'
 
+  patch 'customers/update'
+
   get 'customers/destroy'
 
   resources :customers
