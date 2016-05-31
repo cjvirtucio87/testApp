@@ -15,7 +15,14 @@ module SessionsHelper
     end
   end
 
+  def forget(customer)
+    customer.forget
+    cookies.delete(:customer_id)
+    cookies.delete(:remember_token)
+  end
+
   def log_out
+    forget(current_customer)
     session.delete(:customer_id)
     @current_customer = nil
   end
