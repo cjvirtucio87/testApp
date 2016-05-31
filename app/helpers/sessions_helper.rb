@@ -4,10 +4,13 @@ module SessionsHelper
   end
 
   def current_customer
+    #when in session
     if customer_id = session[:customer_id]
       @current_customer ||= Customer.find_by(id: customer_id)
+    #when not in session, use cookie
     elsif customer_id = cookies.signed[:customer_id]
       customer = Customer.find_by(id: customer_id)
+      #login if remember_token cookie matches customer's remember_digest
       if customer && customer.authenticated?(cookies[:remember_token])
         log_in customer
         @current_customer = customer
