@@ -36,4 +36,5 @@ module SessionsHelper
     cookies.permanent.signed[:customer_id] = customer.id
     cookies.permanent[:remember_token] = customer.remember_token
   end
+
 end
