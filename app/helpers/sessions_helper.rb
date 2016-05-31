@@ -5,7 +5,7 @@ module SessionsHelper
 
   def current_customer
     if customer_id = session[:customer_id]
-      @current_customer ||= Customer.find_by(id: session[:customer_id])
+      @current_customer ||= Customer.find_by(id: customer_id)
     elsif customer_id = cookies.signed[:customer_id]
       customer = Customer.find_by(id: customer_id)
       if customer && customer.authenticated?(cookies[:remember_token])

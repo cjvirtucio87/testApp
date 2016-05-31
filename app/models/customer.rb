@@ -22,7 +22,7 @@ class Customer < ActiveRecord::Base
 
   def remember
     self.remember_token = Customer.new_token
-    update_attributes(remember_digest: Customer.digest(remember_token))
+    update_attribute(:remember_digest, Customer.digest(remember_token))
   end
 
   def authenticated?(remember_token)
@@ -31,6 +31,6 @@ class Customer < ActiveRecord::Base
   end
 
   def forget
-    update_attributes(remember_digest: nil)
+    update_attribute(:remember_digest, nil)
   end
 end
