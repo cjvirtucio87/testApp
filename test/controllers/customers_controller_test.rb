@@ -24,4 +24,9 @@ class CustomersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
+  test "should redirect to login if not logged in as admin" do
+    get :all
+    assert_redirected_to login_url
+  end
+
 end
