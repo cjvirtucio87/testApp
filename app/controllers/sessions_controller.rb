@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       remember_me = params[:session][:remember_me]
       remember_me == '1' ? make_cookies(@customer) : forget(@customer)
       #redirect_to makes a new request, unlike render.
-      redirect_to @customer, notice: 'You are now logged in.'
+      friendly_forward(@customer)
     else
       flash.now[:danger] = 'Invalid email/password combination!'
       render 'new'
