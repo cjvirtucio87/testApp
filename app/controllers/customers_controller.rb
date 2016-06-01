@@ -30,9 +30,9 @@ class CustomersController < ApplicationController
   end
 
   def update
-    permitCustomerParams = params.require(:customer).permit(:name, :email, :password)
     @customer = Customer.find(params[:id])
-    if @customer.update(permitCustomerParams)
+    if @customer.update_attributes(permitParams)
+      flash[:success] = "Profile updated"
       redirect_to @customer
     else
       render 'edit'
@@ -44,4 +44,10 @@ class CustomersController < ApplicationController
     @customer.destroy
     redirect_to customers_path
   end
+
+  private
+    def permitParams
+      permissibleParams = [ :name, :email, :password, :password_confirmation ]
+      permittedParams = params.require(:customer).permit(permissibleParams)
+    end
 end
