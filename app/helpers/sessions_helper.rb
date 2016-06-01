@@ -44,4 +44,12 @@ module SessionsHelper
     cookies.permanent[:remember_token] = customer.remember_token
   end
 
+  def friendly_foward(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  def store_forwarding_url
+    session[:forwarding_url] = request.url if request.get?
+  end
 end
