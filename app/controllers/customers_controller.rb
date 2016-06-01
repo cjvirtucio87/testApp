@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
+  before_action :correct_profile, only: [:edit, :update]
 
   def index
   end
@@ -51,6 +52,14 @@ class CustomersController < ApplicationController
     unless logged_in?
       flash[:danger] = 'Please log in.'
       redirect_to login_url
+    end
+  end
+
+  def correct_profile
+    @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      flash[:danger] = 'Cannot edit other users\' profiles.'
+      redirect_to(root_url)
     end
   end
 
