@@ -8,13 +8,13 @@ class CustomersControllerTest < ActionController::TestCase
 
   test "should redirect to login when not logged in" do
     get :edit, id: @customer
-    assert_not flash.empty?
+    assert danger_flash
     assert_redirected_to login_url
   end
 
   test "should redirect update when not logged in" do
     patch :update, id: @customer, customer: { name: @customer.name, email: @customer.email }
-    assert_not flash.empty?
+    assert danger_flash
     assert_redirected_to login_url
   end
 

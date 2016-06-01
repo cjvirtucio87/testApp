@@ -5,8 +5,7 @@ class SignupTest < ActionDispatch::IntegrationTest
     @customer_hash = { name: 'Jewel',
                        email: 'jewel@gmail.com',
                        password: 'jewelfoobar',
-                       password_confirmation: 'jewelfoobar'
-    }
+                       password_confirmation: 'jewelfoobar' }
   end
 
   test 'should add a new user to the database' do

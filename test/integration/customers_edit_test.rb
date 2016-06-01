@@ -19,6 +19,6 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     log_in_as(@customer, { password: 'foobar' })
     get edit_customer_path(@customer)
     patch customer_path(@customer), customer: { email: 'foobarbaz@foobarmail.com' }
-    assert flash.keys.any? { |k| k == 'success' }
+    assert success_flash
   end
 end

@@ -22,11 +22,11 @@ class ActiveSupport::TestCase
     integration_test? ? post_login.call : new_session.call
   end
 
-  def login_error
+  def danger_flash
     flash.keys.any? { |key| key == 'danger' }
   end
 
-  def login_success
+  def success_flash
     flash.keys.any? { |key| key == 'success' }
   end
 
