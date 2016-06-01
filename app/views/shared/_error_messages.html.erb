@@ -1,0 +1,10 @@
+<% if @customer.errors.any? %> 
+  <div>
+    The form contains <%= pluralize(@customer.errors.count, 'error') %>:
+  </div>
+  <ul>
+    <% @customer.errors.each do |e| %>
+    <li><%= e %></li>
+    <% end %>
+  </ul>
+<% end %>
