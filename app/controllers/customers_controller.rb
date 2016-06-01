@@ -21,7 +21,7 @@ class CustomersController < ApplicationController
     #Whitelist fields.
     permitCustomerParams = params.require(:customer).permit(:name, :email, :password)
     @customer = Customer.new(permitCustomerParams)
-    if @customer.save 
+    if @customer.save
       redirect_to @customer
     else
       render 'new'
@@ -35,7 +35,7 @@ class CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update_attributes(permitParams)
-      flash[:success] = "Profile updated"
+      flash.now[:success] = "Profile updated"
       redirect_to @customer
     else
       render 'edit'

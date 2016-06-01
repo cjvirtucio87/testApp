@@ -15,10 +15,19 @@ class ActiveSupport::TestCase
     remember_me = options[:remember_me] || '1'
     customer_hash = { email: customer.email, 
                       password: password,
+                      password_confirmation: password,
                       remember_me: remember_me }
     post_login = -> { post login_path, session: customer_hash }
     new_session = -> { session[:customer_id] = customer.id }
     integration_test? ? post_login.call : new_session.call
+  end
+
+  def login_error
+    flash.keys.any? { |key| key == 'danger' }
+  end
+
+  def login_success
+    flash.keys.any? { |key| key == 'success' }
   end
 
   private

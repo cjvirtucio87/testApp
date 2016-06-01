@@ -45,11 +45,12 @@ module SessionsHelper
   end
 
   def friendly_forward(default)
-    redirect_to((session[:forwarding_url] || default), notice: 'You are now logged in.')
+    redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)
   end
 
   def store_forwarding_url
     session[:forwarding_url] = request.url if request.get?
   end
+
 end
