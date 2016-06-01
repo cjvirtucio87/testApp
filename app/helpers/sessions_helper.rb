@@ -18,6 +18,10 @@ module SessionsHelper
     end
   end
 
+  def current_customer?(customer)
+    customer == current_customer
+  end
+
   def forget(customer)
     customer.forget
     cookies.delete(:customer_id)

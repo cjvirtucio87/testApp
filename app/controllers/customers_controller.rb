@@ -57,7 +57,7 @@ class CustomersController < ApplicationController
 
   def correct_profile
     @customer = Customer.find(params[:id])
-    unless @customer == current_customer
+    unless current_customer?(@customer)
       flash[:danger] = 'Cannot edit other users\' profiles.'
       redirect_to(root_url)
     end
