@@ -2,20 +2,18 @@ require 'test_helper'
 
 class CustomersControllerTest < ActionController::TestCase
   def setup
-    @customer = Customer.new(id: 1, name: 'tester', email: 'test@testmail.com', 
-                                                    password: 'testword',
-                                                    password_confirmation: 'testword')
+    @customer = customers(:test_customer)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
+  test "should redirect to login when not logged in" do
+    get :edit, id: @customer
+    assert_not flash.empty?
+    assert_redirected_to login_url
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
+  test "should redirect update when not logged in" do
+    patch :update, id: @customer, customer: { name: @customer.name, email: @customer.email }
+    assert_not flash.empty?
+    assert_redirected_to login_url
   end
-
-
 end
