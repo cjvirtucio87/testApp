@@ -7,7 +7,7 @@ class Customer < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   #Returns a token. Token is a string of random chars.
   def Customer.new_token
