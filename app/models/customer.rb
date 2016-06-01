@@ -1,7 +1,7 @@
 class Customer < ActiveRecord::Base
   attr_accessor :remember_token
   
-  VALID_EMAIL_REGEX = /\A[a-zA-Z\-\.]{4,254}@[a-zA-Z\-]{,6}mail\.\w{3}/
+  VALID_EMAIL_REGEX = /\A[a-zA-Z\-\.\d]{4,254}@[a-zA-Z\-]{,6}mail\.\w{3}/
   validates :name, presence: true
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
