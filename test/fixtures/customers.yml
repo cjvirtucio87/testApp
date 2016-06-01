@@ -4,3 +4,8 @@ test_customer:
   name: Tester
   email: test@testmail.com
   password_digest: <%= Customer.digest('foobar') %>
+
+foobar:
+  name: Foobar
+  email: foobar@bazmail.com
+  password_digest: <%= Customer.digest('foobarbaz') %>
