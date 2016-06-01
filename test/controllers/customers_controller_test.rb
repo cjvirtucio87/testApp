@@ -18,17 +18,25 @@ class CustomersControllerTest < ActionController::TestCase
     assert_redirected_to login_url
   end
 
-  test "should redirect to root when editting a different customer's profile" do
-    log_in_as(@customer, { password: 'foobar' })
-    get :edit, id: @foobar
-    assert_not flash.empty?
-    assert_redirected_to root_url
-  end
+  # test "should redirect to root when editting a different customer's profile" do
+  #   log_in_as(@customer, { password: 'foobar' })
+  #   get :edit, id: @foobar
+  #   assert_not flash.empty?
+  #   assert_redirected_to root_url
+  # end
 
   test "should redirect to root when updating a different customer's profile" do
     log_in_as(@customer, { password: 'foobar' })
     patch :update, id: @foobar, customer: { name: @foobar.name, email: @foobar.email }
     assert_not flash.empty?
     assert_redirected_to root_url
+  end
+
+  test "should result in friendly forwarding" do
+    get :edit, id: @customer
+    assert_not flash.empty?
+    assert_redirected_to login_url
+    log_in_as(@customer, { password: 'foobar' })
+    assert_redirected_to edit_customer_path(@customer)
   end
 end
