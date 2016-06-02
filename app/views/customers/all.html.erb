@@ -1,13 +1,7 @@
 <h1>Customers#all</h1>
 <%= will_paginate %>
 
-<ul><% @customers.each do |customer| %>
-  <li><%= customer.name %></li>
-  <span><%= link_to 'edit', edit_customer_path(customer)%></span>
-  <span><%= link_to 'destroy', customer_path(customer),
-                             method: :delete,
-                             data: { confirm: 'Are you sure?' } %></span>
-<% end %></ul>
+<ul><%= render @customers %></ul>
 
 <%= will_paginate %>
 <div><%= link_to 'Home', root_path, method: :get %></div>

@@ -1,0 +1,5 @@
+<li><%= customer.name %></li>
+<span><%= link_to 'edit', edit_customer_path(customer)%></span>
+<span><%= link_to 'destroy', customer_path(customer),
+                           method: :delete,
+                           data: { confirm: 'Are you sure?' } %></span>
