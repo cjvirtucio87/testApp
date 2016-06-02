@@ -9,3 +9,10 @@ foobar:
   name: Foobar
   email: foobar@bazmail.com
   password_digest: <%= Customer.digest('foobarbaz') %>
+
+<% 30.times do |n| %>
+customer_<%= n %>:
+  name: <%= "Customer #{n}" %>
+  email: <%= "mail-#{n}@gmail.com" %>
+  password_digest: <%= Customer.digest('foobar') %>
+<% end %>
