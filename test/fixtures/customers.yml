@@ -4,6 +4,7 @@ test_customer:
   name: Tester
   email: test@testmail.com
   password_digest: <%= Customer.digest('foobar') %>
+  admin: true
 
 foobar:
   name: Foobar
