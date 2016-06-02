@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use will-paginate for pagination.
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'faker', '1.4.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

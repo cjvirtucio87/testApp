@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
   end
 
   def all
-    @customers = Customer.all
+    @customers = Customer.paginate(page: params[:page])
   end
 
   def new
