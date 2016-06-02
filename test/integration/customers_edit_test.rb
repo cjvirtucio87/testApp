@@ -31,4 +31,15 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test 'successful edit with friendly forwarding' do
+    get edit_customer_path(@customer)
+    log_in_as(@customer, { password: 'foobar' })
+    assert_redirected_to edit_customer_path(@customer)
+    delete logout_path @customer
+    assert success_flash
+    assert_redirected_to root_url
+    log_in_as(@customer, { password: 'foobar' })
+    assert_redirected_to @customer
+  end
+
 end
