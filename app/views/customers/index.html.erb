@@ -2,9 +2,7 @@
 <ul>
   <li><%= link_to 'Sign up!', customers_new_path %></li>
   <li><%= logged_in_link(current_customer)%></li> 
-  <li>
-    <% if current_customer.admin? %>
-     <%= link_to 'List of customers', customers_all_path %>
-    <% end %>
-  </li>
+  <% if logged_in? && current_customer.admin? %>
+   <%= content_tag :li, (link_to 'List of customers', customers_all_path) %></li>
+  <% end %>
 </ul>

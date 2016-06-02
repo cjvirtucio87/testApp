@@ -1,9 +1,11 @@
 class CustomersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :all]
   before_action :correct_profile, only: [:edit, :update]
-  before_action :admin_user, only: :all
+  before_action :admin_user, only: [:all]
 
   def index
+    #Declare @customer only if an id is among the query parameters.
+    @customer = Customer.find(params[:id]) if params[:id]
   end
 
   def show
@@ -72,6 +74,6 @@ class CustomersController < ApplicationController
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url) unless current_customer.admin?
     end
 end
