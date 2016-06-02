@@ -51,4 +51,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to @customer
   end
 
+  test 'should not edit the admin attribute through a direct PATCH request to customers#update' do
+    patch customer_path(@customer), customer: { admin: false }
+    assert @customer.admin?
+  end
+
 end
