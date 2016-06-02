@@ -18,12 +18,6 @@ class CustomersControllerTest < ActionController::TestCase
     assert_redirected_to login_url
   end
 
-  test "should redirect to root when editting a different customer's profile" do
-    log_in_as(@customer, { password: 'foobar' })
-    get :edit, id: @foobar
-    assert_redirected_to root_url
-  end
-
   test "should redirect to login if not logged in as admin" do
     get :all
     assert_redirected_to login_url
@@ -31,7 +25,9 @@ class CustomersControllerTest < ActionController::TestCase
 
   test "should redirect to login if a non-admin attempts to delete another user" do
     log_in_as(@foobar)
-    post :destroy, id: @customer
+    assert_no_difference 'Customer.count' do
+      post :destroy, id: @customer
+    end
     assert danger_flash
     assert_redirected_to login_url
   end

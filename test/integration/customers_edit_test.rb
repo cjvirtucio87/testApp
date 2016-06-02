@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersEditTest < ActionDispatch::IntegrationTest
   def setup
     @customer = customers(:test_customer)
+    @foobar = customers(:foobar)
   end
 
   test 'unsuccessful edit' do
@@ -17,8 +18,17 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   test 'successful edit' do
     log_in_as(@customer, { password: 'foobar' })
+    assert success_flash
     get edit_customer_path(@customer)
     patch customer_path(@customer), customer: { email: 'foobarbaz@foobarmail.com' }
     assert success_flash
   end
+
+  test "should redirect to root when editting a different customer's profile" do
+    log_in_as(@customer, { password: 'foobar' })
+    assert success_flash
+    get edit_customer_path(@foobar)
+    assert_redirected_to root_url
+  end
+
 end
