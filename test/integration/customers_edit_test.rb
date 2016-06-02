@@ -49,7 +49,6 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     log_in_as(@customer, { password: 'foobar' })
     assert success_flash
     assert_redirected_to @customer
-    assert_template customer_path(@customer)
   end
 
 end
