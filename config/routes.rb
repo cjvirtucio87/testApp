@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   patch 'customers/update'
 
-  get 'customers/destroy'
+  post 'customers/destroy'
 
   resources :customers
 

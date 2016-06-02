@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :all]
   before_action :correct_profile, only: [:edit, :update]
+  before_action :admin_user, only: :all
 
   def index
   end
@@ -68,5 +69,9 @@ class CustomersController < ApplicationController
     def permitParams
       permissibleParams = [ :name, :email, :password, :password_confirmation ]
       permittedParams = params.require(:customer).permit(permissibleParams)
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end

@@ -8,9 +8,13 @@
     <td><%= @customer.name %></td>
     <td><%= @customer.email %></td>
     <td><%= link_to 'edit', edit_customer_path(@customer)%></td>
-    <td><%= link_to 'destroy', customer_path(@customer),
-                               method: :delete,
-                               data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <% if !current_customer.admin? && current_customer?(@customer) %> 
+        <%= link_to 'destroy', customer_path(@customer), 
+                              method: :delete, data: 
+                              { confirm: 'Are you sure?' } %>
+      <% end %>
+    </td>
   </tr>
 </table>
 <div><%= link_to 'Home', root_path, method: :get %></div>
