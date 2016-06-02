@@ -10,19 +10,7 @@ Rails.application.routes.draw do
   #Customers.
   root 'customers#index'
 
-  get 'customers/show'
-
   get 'customers/all'
-
-  get 'customers/new'
-
-  post 'customers/create'
-
-  get 'customers/edit'
-
-  patch 'customers/update'
-
-  post 'customers/destroy'
 
   resources :customers
 

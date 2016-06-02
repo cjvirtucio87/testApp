@@ -4,6 +4,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   def setup
     @customer = customers(:test_customer)
     @foobar = customers(:foobar)
+    @login_params = { email: @customer.email, 
+                      password: 'foobar',
+                      password_confirmation: 'foobar' }
   end
 
   test 'unsuccessful edit' do
@@ -40,6 +43,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
     log_in_as(@customer, { password: 'foobar' })
     assert_redirected_to @customer
+  end
+
+  test 'should display proper layout links' do
+    log_in_as(@customer, { password: 'foobar' })
+    assert success_flash
+    assert_redirected_to @customer
+    assert_template customer_path(@customer)
   end
 
 end

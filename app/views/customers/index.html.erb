@@ -1,6 +1,6 @@
 <h1>Customers#index</h1>
 <ul>
-  <li><%= link_to 'Sign up!', customers_new_path %></li>
+  <li><%= link_to 'Sign up!', new_customer_path %></li>
   <li><%= logged_in_link(current_customer)%></li> 
   <% if logged_in? && current_customer.admin? %>
    <%= content_tag :li, (link_to 'List of customers', customers_all_path) %></li>
