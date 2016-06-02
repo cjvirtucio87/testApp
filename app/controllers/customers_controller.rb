@@ -47,8 +47,13 @@ class CustomersController < ApplicationController
 
   def destroy
     @customer = Customer.find(params[:id])
-    @customer.destroy
-    redirect_to customers_path
+    if current_customer.admin?
+      @customer.destroy
+      redirect_to customers_path
+    else
+      flash.now[:danger] = 'You are not the admin. Please log in as admin user.'
+      redirect_to login_path
+    end
   end
 
   def logged_in_user

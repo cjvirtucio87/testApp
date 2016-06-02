@@ -32,6 +32,7 @@ class CustomersControllerTest < ActionController::TestCase
   test "should redirect to login if a non-admin attempts to delete another user" do
     log_in_as(@foobar)
     post :destroy, id: @customer
+    assert danger_flash
     assert_redirected_to login_url
   end
 
