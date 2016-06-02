@@ -41,6 +41,7 @@ class CustomersController < ApplicationController
       flash.now[:success] = "Profile updated"
       redirect_to @customer
     else
+      flash.now[:danger] = "Error: profile not updated"
       render 'edit'
     end
   end

@@ -52,8 +52,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not edit the admin attribute through a direct PATCH request to customers#update' do
-    patch customer_path(@customer), customer: { admin: false }
-    assert @customer.admin?
+    log_in_as(@foobar, { password: 'foobarbaz' })
+    assert_not @foobar.admin?
+    patch customer_path(@foobar), customer: { admin: true }
+    assert success_flash
+    assert_not @foobar.reload.admin?
   end
 
 end
